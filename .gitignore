@@ -11,6 +11,7 @@ yarn-debug.log*
 yarn-error.log*
 /.changelog
 .npm/# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+.env # This contains secrets, dont store in source control
 
 # dependencies
 /node_modules

@@ -1,11 +1,15 @@
 import React from "react";
+import Footer from "./Footer";
 import Header from "./Header";
-import MainNavigation from "./MainNavigation";
 
-const Layout = () =>{
-    return <React.Fragment>
-        <Header />
+const Layout = (props) => {
+  return (
+    <React.Fragment>
+      <Header />
+      <main>{props.children}</main>
+      <Footer />
     </React.Fragment>
-}
+  );
+};
 
 export default Layout;
