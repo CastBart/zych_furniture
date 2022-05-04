@@ -1,4 +1,4 @@
-import { ref, getDownloadURL } from "firebase/storage";
+import { ref, getDownloadURL, listAll } from "firebase/storage";
 import { storage } from "./config";
 
 /**
@@ -11,8 +11,26 @@ export const getImageFromStorage = async (imagePath) => {
 
     try {
         const response = await getDownloadURL(imagesRef);
+       // console.log(response)
         return response;
     } catch (error) {
         console.error(error);
     }
 };
+
+/**
+ * Retrieve all images in a given folder
+ * @param {indicates the folder from which all images will be retrieved} folder 
+ */
+export const getAllImagesInFolder = async (folder) =>{
+    const imagesRef = ref(storage, folder)
+    try {
+        const response = await listAll(imagesRef);
+        const urls = await response.items.map( async (imgRef) =>{
+            return await getDownloadURL(imgRef)
+        })
+        return await Promise.all(urls)        
+    } catch (error) {
+        console.error(error)
+    }
+}
