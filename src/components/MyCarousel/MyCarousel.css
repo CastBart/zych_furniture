@@ -1,0 +1,62 @@
+.carousel {
+  height: 100vh;
+}
+
+.image-container-flex {
+  height: 100%;
+  width: 100%;
+  display: flex;
+}
+.carousel-inner,
+.carousel-item {
+  height: 100%;
+}
+.carousel-item {
+  background-color: black;
+}
+.carousel-item img {
+  height: 50%;
+  width: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+.image-description {
+  padding-top: 1.25rem;
+  padding-bottom: 1.25rem;
+  color: #fff;
+  text-align: center;
+}
+
+@media all and (orientation: landscape) {
+  .carousel-item img {
+    height: 100%;
+  }
+  .image-description {
+    position: absolute;
+    right: 15%;
+    bottom: 1.25rem;
+    left: 15%;
+  }
+}
+
+@media all and (orientation: portrait) {
+  .image-container-flex {
+    flex-direction: column;
+  }
+  .carousel-item img {
+    height: 50%;
+    align-items: top;
+  }
+  .carousel-caption {
+    position: static;
+    align-self: center;
+    justify-self: end;
+  }
+  .image-description {
+    flex: 1 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+}
