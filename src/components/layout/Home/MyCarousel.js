@@ -1,9 +1,10 @@
 import { useEffect } from "react";
-import { getLandingImagesInfo } from "../../lib/api";
-import useHttp from "../../hooks/use-http";
+import { getLandingImagesInfo } from "../../../lib/api";
+import useHttp from "../../../hooks/use-http";
 import Carousel from "react-bootstrap/Carousel";
 import Spinner from "react-bootstrap/Spinner";
 import "./MyCarousel.css";
+
 
 const MyCarousel = () => {
 

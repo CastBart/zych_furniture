@@ -10,15 +10,11 @@ const FIREBASE_DOMAIN =
  * @param {path of the image.} imagePath
  */
 export const getImageFromStorage = async (imagePath) => {
-  const imagesRef = ref(storage, `images/${imagePath}`);
+  const imagesRef = ref(storage, imagePath);
 
-  try {
-    const response = await getDownloadURL(imagesRef);
-    // console.log(response)
-    return response;
-  } catch (error) {
-    console.error(error);
-  }
+  const response = await getDownloadURL(imagesRef);
+  // console.log(response)
+  return response;
 };
 
 /**
@@ -41,12 +37,10 @@ export const getAllImagesInFolder = async (folder) => {
 
 /**
  * Retrieve image information from database
- * @returns array of objects: the object contains an id: name of image, description:string representing the description of the image and src: downloadable link 
+ * @returns array of objects: the object contains an id: name of image, description:string representing the description of the image and src: downloadable link
  */
 export const getLandingImagesInfo = async () => {
-  const response = await fetch(
-    `${FIREBASE_DOMAIN}landing.json`
-  );
+  const response = await fetch(`${FIREBASE_DOMAIN}landing.json`);
   const responseData = await response.json();
 
   if (!response.ok) {

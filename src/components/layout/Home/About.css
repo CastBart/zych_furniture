@@ -1,0 +1,37 @@
+.about-color {
+  background-color: rgb(127, 189, 218);
+}
+
+#id p{
+    align-self:center ;
+    justify-self: center;
+}
+
+
+
+
+  @media all and (orientation: landscape) {
+    /* <---- About ---->*/
+    .about-description {
+        position: absolute;
+        right: 15%;
+        bottom: 1.25rem;
+        left: 15%;
+        background: hsl(0, 0%, 100%, 0.1);
+        backdrop-filter: blur(0.5rem);
+      }
+  
+    /* <---- About ---->*/
+  }
+  
+  @media all and (orientation: portrait) {
+    /* <---- About ---->*/
+    .about-description {
+        flex: 1 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+    /* <---- About ---->*/
+  }

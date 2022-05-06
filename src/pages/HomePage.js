@@ -1,8 +1,15 @@
-import MyCarousel from "../components/MyCarousel/MyCarousel";
+import About from "../components/layout/Home/About";
+import MyCarousel from "../components/layout/Home/MyCarousel";
+import Pricing from "../components/layout/Home/Pricing";
 
 const HomePage = () => {
-
-  return <MyCarousel />;
+  return (
+    <section>
+      <MyCarousel />
+      <About />
+      <Pricing />
+    </section>
+  );
 };
 
 export default HomePage;

@@ -1,0 +1,42 @@
+/* <---- Carousel ---->*/
+.carousel {
+    height: 100vh;
+  }
+  .carousel-inner,
+  .carousel-item {
+    height: 100%;
+  }
+  .carousel-item {
+    background-color: black;
+  }
+  .carousel-item img {
+    height: 50%;
+    width: 100%;
+  }
+  .image-description {
+    color: #fff;
+    text-align: center;
+  }
+  /* <---- Carousel ---->*/
+  
+  @media all and (orientation: landscape) {
+    /* <---- Carousel ---->*/
+    .carousel-item img {
+      height: 100%;
+    }
+    /* <---- Carousel ---->*/
+  }
+  
+  @media all and (orientation: portrait) {
+    /* <---- Carousel ---->*/
+    .carousel-item img {
+      height: 50%;
+      align-items: top;
+    }
+    .carousel-caption {
+      position: static;
+      align-self: center;
+      justify-self: end;
+    }
+    /* <---- Carousel ---->*/
+  }
