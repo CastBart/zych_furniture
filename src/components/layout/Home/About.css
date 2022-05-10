@@ -2,9 +2,12 @@
   background-color: rgb(152 115 85);
 }
 
-#id p {
+#about p {
   align-self: center;
   justify-self: center;
+}
+#about img{
+  filter: brightness(50%);
 }
 .about-description {
   color: white;

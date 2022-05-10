@@ -30,7 +30,7 @@
   @media all and (orientation: portrait) {
     /* <---- Carousel ---->*/
     .carousel-item img {
-      height: 50%;
+      height: 65%;
       align-items: top;
     }
     .carousel-caption {
