@@ -27,14 +27,14 @@ code {
 .fullscreen-container {
   height: 100vh;
   width: 100vw;
-  overflow: hidden;
 }
 
 .image-container-flex {
-  height: 100%;
-  width: 100%;
-  display: flex;
-  background-color: rgb(227 182 151);
+  height: auto;
+  width: 50%;
+  margin: 1rem;
+  justify-self: center;
+  align-self: center;
   position: relative;
 }
 .image-container-flex img {
@@ -42,17 +42,15 @@ code {
   object-position: center;
   width: 100%;
 }
+.image-description{
+  flex-grow: 1;
+  align-self: center;
+  margin: 1rem;
+  color: rgb(0, 0, 0);
+}
 
 @media all and (orientation: landscape) {
   /* <---- Image ---->*/
-  .image-description {
-    position: absolute;
-    right: 15%;
-    bottom: 1.25rem;
-    left: 15%;
-    background: hsl(0, 0%, 100%, 0.1);
-    backdrop-filter: blur(0.5rem);
-  }
 
   .image-container-flex img {
     height: 100%;
@@ -61,20 +59,22 @@ code {
 }
 
 @media all and (orientation: portrait) {
+  .fullscreen-container{
+    flex-direction: column;
+    height: auto;
+  }
   /* <---- Image ---->*/
   .image-container-flex {
-    flex-direction: column;
+    width: 100%;
   }
   .image-description {
-    flex: 1 1;
+    flex-grow: 0;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
   }
 
-  .image-container-flex img {
-    height: 50%;
-  }
+  
   /* <---- Image ---->*/
 }
