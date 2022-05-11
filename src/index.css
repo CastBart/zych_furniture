@@ -40,7 +40,6 @@ code {
 .image-container-flex img {
   object-fit: cover;
   object-position: center;
-  width: 100%;
 }
 .image-description{
   flex-grow: 1;

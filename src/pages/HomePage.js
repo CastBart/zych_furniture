@@ -6,7 +6,7 @@ const HomePage = () => {
   return (
     <section>
       <MyCarousel />
-      {/* <About /> */}
+      <About />
       <Pricing />
     </section>
   );

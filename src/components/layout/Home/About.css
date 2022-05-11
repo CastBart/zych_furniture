@@ -16,28 +16,12 @@
 
 @media all and (orientation: landscape) {
   /* <---- About ---->*/
-  .about-description {
-    position: absolute;
-    background: hsl(0, 0%, 100%, 0.1);
-    backdrop-filter: blur(0.5rem);
-    text-align: center;
-    bottom: calc(1.5rem);
-    left: 15%;
-    right: 15%;
-  }
-
+  
   /* <---- About ---->*/
 }
 
 @media all and (orientation: portrait) {
   /* <---- About ---->*/
-  .about-description {
-    flex: 1 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    margin: auto 1.5rem;
-  }
+  
   /* <---- About ---->*/
 }
