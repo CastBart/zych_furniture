@@ -1,13 +1,15 @@
 .about-color {
-  background-color: rgb(152 115 85);
+  background-image: linear-gradient(
+    to bottom left,
+    rgb(185, 142, 142),
+    rgb(220, 233, 106)
+  );
 }
-
-#about p {
-  align-self: center;
-  justify-self: center;
+#about p{
+ margin: 1rem;
 }
 #about img{
-  filter: brightness(50%);
+  width: 100%;
 }
 .about-description {
   color: white;
@@ -22,6 +24,12 @@
 
 @media all and (orientation: portrait) {
   /* <---- About ---->*/
-  
+  #about{
+    flex-direction: column-reverse;
+  }
+  #about img{
+    width: 80%;
+    margin: auto;
+  }
   /* <---- About ---->*/
 }

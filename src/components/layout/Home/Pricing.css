@@ -1,0 +1,7 @@
+.pricing-color{
+    background-image: linear-gradient(
+    to top left,
+    rgb(185, 142, 142),
+    rgb(220, 233, 106)
+  );
+}

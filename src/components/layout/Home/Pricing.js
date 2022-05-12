@@ -1,5 +1,6 @@
+import './Pricing.css'
 const Pricing = () =>{
-    return <section className="fullscreen-container">
+    return <section id='pricing' className="fullscreen-container pricing-color">
         <h1>Pricing</h1>
     </section>
 }

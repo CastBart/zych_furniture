@@ -40,6 +40,7 @@ code {
 .image-container-flex img {
   object-fit: cover;
   object-position: center;
+  width: 100%;
 }
 .image-description{
   flex-grow: 1;
@@ -52,7 +53,7 @@ code {
   /* <---- Image ---->*/
 
   .image-container-flex img {
-    height: 100%;
+    height: auto;
   }
   /* <---- Image ---->*/
 }
@@ -64,7 +65,7 @@ code {
   }
   /* <---- Image ---->*/
   .image-container-flex {
-    width: 100%;
+    width: 80%;
   }
   .image-description {
     flex-grow: 0;
