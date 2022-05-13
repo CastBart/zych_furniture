@@ -1,13 +1,13 @@
 # zych_furniture
 
 online furniture store
-
-I am using FakeStoreAPI for this project.
-1. It allows me to pull products from the API
-2. Create users
-3. Create carts and update them
-4. Update products 
-
-A project focused on creating an online furniture store. The goal for this project is to leanr more about 3rd party APIs.
-I will use a free store API to dump data onto the screen. It is a way for me to learn REST APIs to familiarise myself for 
-real world applications.
+ 
+ 
+ I am using firebase in this project for storing information in a database and images in the storage.
+ I am then retrieving all the information from the database. I am duoing so as I will find it easier
+ to make any updates to the page. All I aim to do in the future is change images in the storage or 
+ change information in the database rather than going throug the whole process of building the app 
+ and changing all files on the hosting service.
+ 
+ The website is developed using react and some other react-compatible libraries.I am using 
+ React-Bootstrap as my main styling for this page and will be using AWS as my hosting services.
