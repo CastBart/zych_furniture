@@ -66,3 +66,12 @@ export const getPricingInfo = async () => {
 
   return responseData;
 };
+
+/**
+ *
+ * @param {*value to be tested if its an object or not} value
+ * @returns returns a true or false whether the passed value is an object or not
+ */
+ export const isObject = (value) => {
+  return !!(value && typeof value === "object" && !Array.isArray(value));
+};
