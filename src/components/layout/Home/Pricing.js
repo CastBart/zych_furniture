@@ -6,6 +6,11 @@ import Spinner from "react-bootstrap/Spinner";
 import "./Pricing.css";
 import ProductForm from "../../products/ProductForm";
 
+/**
+ * creates an option JSX element with given id
+ * @param {*name of option} id is used as an option name and its value
+ * @returns JSX element
+ */
 const createProductOptions = (id) => {
   return (
     <option key={id} value={id}>
@@ -13,119 +18,82 @@ const createProductOptions = (id) => {
     </option>
   );
 };
-const createProductForm = (obj) => {
-  if (isObject(obj)) {
-    const entries = Object.entries(obj);
-    const form = entries.map((entry) => {
-      const [entryKey, entryValue] = entry;
-
-      if (isObject(entryValue)) {
-        const valueEntries = Object.entries(entryValue);
-        const valueOptions = valueEntries.map((key) => {
-          // console.log(key);
-          return createProductOptions(key[0]);
-        });
-        const childForm = createProductForm(entryValue);
-        const select = (
-          <div className="container">
-            {/* <Form.Label>{entryKey}</Form.Label> */}
-            {/* <Form.Select>{valueOptions}</Form.Select> */}
-            {/* {childForm} */}
-            <ProductForm onSelect={createProductForm(entryValue)} id={entryKey}>
-              {valueOptions}
-            </ProductForm>
-          </div>
-        );
-        //const child = createProductForm(entryValue);
-        //console.log(child);
-        if (select !== null) {
-          return select;
-        }
-      }
-      const options = entryValue.map((option) => {
-        return createProductOptions(option);
-      });
-      return (
-        <>
-          <Form.Label htmlFor={entryKey}>{entryKey}</Form.Label>
-          <Form.Select id={entryKey}>{options}</Form.Select>
-        </>
-      );
-    });
-    return <div className="container">{form}</div>;
-  }
-  return createProductOptions(obj);
-};
 
 const Pricing = () => {
-  const [product, setProduct] = useState("");
   const [formList, setFormList] = useState([]);
 
   const {
-    sendRequest: getPricingData,
+    sendRequest: getPricingData, //function to access data from database
     status,
-    data: pricingData,
+    data: pricingData, // transfromed data into an object 
     error,
   } = useHttp(getPricingInfo, true);
 
   useEffect(() => {
     getPricingData();
-    // setFormList(createForm(pricingData))
   }, []);
 
-  const createForm = (data, lableName = "") => {
+  /**
+   * Creating a list of form lable and form select with options
+   * @param {object which is transformed into form select options} data 
+   * @param {if data is an array, lable variable can be passed in for speciing the lable name. if lableName is not provided it's set to 'color'} lableName 
+   */
+  const createForm = (data, lableName = "color") => {
+    console.log(formList);
+
     if (isObject(data)) {
       const entries = Object.entries(data);
       const form = entries.map((entry) => {
+        //destructuring an object into 2 values
         const [entryKey, entryValue] = entry;
-        if (isObject(entryValue)) {
-          const valueEntries = Object.entries(entryValue);
-          const valueOptions = valueEntries.map((key) => {
-            // console.log(key);
-            return createProductOptions(key[0]);
+        if (isObject(entryValue)) { //checks if second value is an object
+          const valueEntries = Object.entries(entryValue); // creating a new array for each entry in the object
+          const valueOptions = valueEntries.map((key) => { // since entry value is an object, need to get each entries name to create options for the form select
+            return key[0];
           });
           return (
             <ProductForm
               key={entryKey}
               onSelect={createForm}
               data={entryValue}
+              options={valueOptions}
               id={entryKey}
             >
               {valueOptions}
             </ProductForm>
           );
-        }
-        const entryValueOptions = entryValue.map((entry) => {
-          return createProductOptions(entry);
-        });
+        } 
+        //if the entryvalue is not an object it must be an array. for each entry, a form is created with options depending on data thats passed on
         return (
           <ProductForm
             key={entryKey}
             onSelect={createForm}
             data={data}
+            options={entryValue}
             id={entryKey}
-          >
-            {entryValueOptions}
-          </ProductForm>
+          />
         );
       });
-      // setFormList((prev) => [...prev, form]);
-      setFormList([form])
-      // console.log(form);
-      return form;
-    } else if (Array.isArray(data)) {
-      // console.log(data);
-      // console.log(lableName);
-      const options = data.map((item) => {
-        return createProductOptions(item);
-      });
+      setFormList(form);
+    } else if (Array.isArray(data)) { //this is the final nest of the function. meaning there is no more data inside the passed on variable
       const form = (
-        <ProductForm key='color' onSelect={null} data={null} id='color'>
-          {options}
-        </ProductForm>
+        <ProductForm
+          key={lableName}
+          onSelect={null}
+          data={null}
+          options={data}
+          id={lableName}
+        />
       );
-      setFormList((prev) => [...prev, form]);
-      return form;
+
+      setFormList((prev) => {
+        if (prev.length <= 1) {
+          return [...prev, form];
+        } else {
+          const [first] = prev
+          return [first,form];
+        }
+      });
     }
   };
 
@@ -146,15 +114,11 @@ const Pricing = () => {
 
   //return all options for different types of products
   const productOptions = Object.keys(pricingData["products"]).map((key) => {
-    return (
-      <option key={key} value={key}>
-        {key}
-      </option>
-    );
+    return createProductOptions(key);
   });
-  const selectHandler = (value) => {
-    setProduct(value);
-  };
+  const woodOptions = pricingData["wood"].map((key) => {
+    return createProductOptions(key);
+  });
 
   return (
     <section id="pricing" className="fullscreen-container pricing-color">
@@ -164,16 +128,21 @@ const Pricing = () => {
           <ProductForm
             onSelect={createForm}
             data={pricingData["products"]}
+            options={pricingData["products"]}
             id="product"
           >
             {productOptions}
           </ProductForm>
-          {/* {createForm(pricingData)} */}
+          <ProductForm
+            onSelect={createForm}
+            data={pricingData["wood"]}
+            options={pricingData["wood"]}
+            id="wood"
+          >
+            {woodOptions}
+          </ProductForm>
         </div>
-        <div className="col-md-9">
-          {/* {createProductForm(pricingData["products"][product])} */}
-          {formList}
-        </div>
+        <div className="col-md-9">{formList}</div>
       </div>
     </section>
   );
