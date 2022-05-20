@@ -2,19 +2,39 @@ import { useState } from "react";
 import Form from "react-bootstrap/Form";
 import { isObject } from "../../lib/api";
 
+/**
+ * Creates options for From.Select 
+ * @param {*} data is transfromed into JSX option element
+ * @returns JSX 'option' element
+ */
+const createOptions = (data) => {
+  if (isObject(data)) {
+    const entries = Object.entries(data);
+    return entries.map((entry) => {
+      return (
+        <option key={entry[0]} value={entry[0]}>
+          {entry[0].replace(/^./, str => str.toUpperCase())}
+        </option>
+      );
+    });
+  } else if (Array.isArray(data)) {
+    return data.map((entry) => {
+      return (
+        <option key={entry} value={entry}>
+          {entry.replace(/^./, str => str.toUpperCase())}
+        </option>
+      );
+    });
+  }
+};
+
 const ProductForm = (props) => {
   const [selected, setSelected] = useState("");
-
+  console.log(props.data);
   const onChangeHandler = (e) => {
     const value = e.target.value;
-    // console.log(props.data[value]);
-    // console.log(value);
-    if (props.data) {
-      if (isObject(props.data[value])) {
-        props.onSelect(props.data[value]);
-      } else {
-        props.onSelect(props.data[value], value);
-      }
+    if (props.onSelect) {
+      props.onSelect(props.data[value]);
     }
 
     //  else(props.onSelect(props.data))
@@ -22,9 +42,10 @@ const ProductForm = (props) => {
   };
   return (
     <div className="container">
-      <Form.Label htmlFor={props.id}>{props.id}</Form.Label>
+      <Form.Label htmlFor={props.id}>{props.id.replace(/^./, str => str.toUpperCase())}</Form.Label>
       <Form.Select id={props.id} value={selected} onChange={onChangeHandler}>
-        {props.children}
+        <option>{`Choose ${props.id}`}</option>
+        {createOptions(props.options)}
       </Form.Select>
     </div>
   );
