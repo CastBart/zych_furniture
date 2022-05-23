@@ -1,9 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import {
-  getPricingInfo,
-  getProductImages,
-  isObject,
-} from "../../../lib/api";
+import { getPricingInfo, getProductImages, isObject } from "../../../lib/api";
 import useHttp from "../../../hooks/use-http";
 import Spinner from "react-bootstrap/Spinner";
 import "./Pricing.css";
@@ -24,9 +20,9 @@ const createOptions = (id) => {
 
 const Pricing = () => {
   const [formList, setFormList] = useState([]);
-  const [product, setProduct] = useState('')
-  const [productImage, setProductImage] = useState('')
-  
+  const [product, setProduct] = useState("");
+  const [productImage, setProductImage] = useState("");
+
   const {
     sendRequest: getPricingData, //function to access data from database
     status,
@@ -45,16 +41,16 @@ const Pricing = () => {
     getProductData();
   }, []);
 
-  const productChangeHandler = (value) =>{
+  const productChangeHandler = (value) => {
     setProduct(value);
-    console.log(value)
-    console.log(productData)
+    console.log(value);
+    console.log(productData);
     for (let i = 0; i < productData.length; i++) {
       const element = productData[i];
-      if(element.hasOwnProperty(value)){
-        const source = element[value]
-        console.log(source)
-        setProductImage(source)
+      if (element.hasOwnProperty(value)) {
+        const source = element[value];
+        console.log(source);
+        setProductImage(source);
       }
     }
     // const image = productData.filter(obj =>{
@@ -65,8 +61,7 @@ const Pricing = () => {
     //   }
     // })
     // console.log(image)
-  }
-  
+  };
 
   /**
    * Creating a list of form lable and form select with options
@@ -74,7 +69,6 @@ const Pricing = () => {
    * @param {if data is an array, lable variable can be passed in for speciing the lable name. if lableName is not provided it's set to 'color'} lableName
    */
   const createForm = (data, lableName = "color") => {
-
     if (isObject(data)) {
       const entries = Object.entries(data);
       const form = entries.map((entry) => {
@@ -171,7 +165,9 @@ const Pricing = () => {
           >
             {productOptions}
           </ProductForm>
-          <img src={productImage}/>
+          <div className="container pricing-image">
+            <img src={productImage} />
+          </div>
         </div>
         <div className="col-md-3">
           <ProductForm
