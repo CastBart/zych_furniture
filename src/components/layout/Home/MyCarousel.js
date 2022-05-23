@@ -39,7 +39,7 @@ const MyCarousel = () => {
       <Carousel.Item interval={9999999999} key={img.id}>
         <div className="fullscreen-container d-flex">
           <div className="image-container-flex">
-            <img className="d-block" src={img.src} alt="First slide" />
+            <img className="d-block" src={img.src} alt={`${img.id}`} />
           </div>
           <div className="image-description">
             <h1>{img.id}</h1>

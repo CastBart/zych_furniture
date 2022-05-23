@@ -56,6 +56,28 @@ export const getLandingImagesInfo = async () => {
   return dataArray;
 };
 
+/**
+ * 
+ * @returns returns an array of objects with each image name as key and image src as its value
+ */
+export const getProductImages = async () => {
+  const response = await fetch(`${FIREBASE_DOMAIN}landing.json`);
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    throw new Error(responseData.message || "Could not fetch image info");
+  }
+
+  const dataArray = Object.entries(responseData).map((product) => {
+    const { key, src } = product[1];
+    const object = {};
+    object[`${key}`] = src;
+    return object;
+  });
+
+  return dataArray;
+};
+
 export const getPricingInfo = async () => {
   const response = await fetch(`${FIREBASE_DOMAIN}pricing.json`);
   const responseData = await response.json();
@@ -72,6 +94,6 @@ export const getPricingInfo = async () => {
  * @param {*value to be tested if its an object or not} value
  * @returns returns a true or false whether the passed value is an object or not
  */
- export const isObject = (value) => {
+export const isObject = (value) => {
   return !!(value && typeof value === "object" && !Array.isArray(value));
 };

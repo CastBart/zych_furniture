@@ -30,15 +30,17 @@ const createOptions = (data) => {
 
 const ProductForm = (props) => {
   const [selected, setSelected] = useState("");
-  console.log(props.data);
   const onChangeHandler = (e) => {
     const value = e.target.value;
     if (props.onSelect) {
       props.onSelect(props.data[value]);
     }
+    if(props.onProductChange){
+      props.onProductChange(value)
+    }
 
     //  else(props.onSelect(props.data))
-    setSelected(e.target.value);
+    setSelected(value);
   };
   return (
     <div className="container">
