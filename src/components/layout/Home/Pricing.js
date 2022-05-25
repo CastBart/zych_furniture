@@ -43,8 +43,6 @@ const Pricing = () => {
 
   const productChangeHandler = (value) => {
     setProduct(value);
-    console.log(value);
-    console.log(productData);
     for (let i = 0; i < productData.length; i++) {
       const element = productData[i];
       if (element.hasOwnProperty(value)) {
@@ -118,11 +116,11 @@ const Pricing = () => {
       );
 
       setFormList((prev) => {
-        if (prev.length <= 1) {
+        if (prev.length <= 2) {
           return [...prev, form];
         } else {
-          const [first] = prev;
-          return [first, form];
+          const [first, second, third] = prev;
+          return [first, second, third, form];
         }
       });
     }
@@ -154,7 +152,7 @@ const Pricing = () => {
   return (
     <section id="pricing" className="fullscreen-container pricing-color">
       <h1>Pricing</h1>
-      <div className="row">
+      <div className="row justify-content-center">
         <div className="col-md-3">
           <ProductForm
             onSelect={createForm}
@@ -179,6 +177,9 @@ const Pricing = () => {
             {woodOptions}
           </ProductForm>
           {formList}
+        </div>
+        <div className="col-md-3">
+          <p>This will be the product detailed description</p>
         </div>
       </div>
     </section>
