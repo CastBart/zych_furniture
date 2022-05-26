@@ -112,11 +112,12 @@ const Pricing = () => {
       );
 
       setProductSelectList((prev) => {
-        if (prev.length <= 2) {
-          return [...prev, form];
-        } else {
+        if (prev.length <= 3) {
           const [first, second, third] = prev;
-          return [first, second, third, form];
+          return [first, second, form, third ];
+        } else{
+          const [first, second, , forth] = prev;
+          return [first, second, form, forth];
         }
       });
     }
@@ -175,7 +176,7 @@ const Pricing = () => {
           {productSelectList}
         </div>
         <div className="col-md-3">
-          <p>This will be the product detailed description</p>
+          <p>{product.trim().length > 0 ? `This will be the ${product} detailed description` : 'Select a product to see pricing'}</p>
         </div>
       </div>
     </section>
