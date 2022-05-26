@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { getPricingInfo, getProductImages, isObject } from "../../../lib/api";
+import { getProductInfo, getProductImages, isObject } from "../../../lib/api";
 import useHttp from "../../../hooks/use-http";
 import Spinner from "react-bootstrap/Spinner";
 import "./Pricing.css";
@@ -29,7 +29,7 @@ const Pricing = () => {
     status,
     data: pricingData, // transfromed data into an object
     error,
-  } = useHttp(getPricingInfo, true);
+  } = useHttp(getProductInfo, true);
 
   const {
     sendRequest: getProductData,

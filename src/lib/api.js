@@ -78,7 +78,7 @@ export const getProductImages = async () => {
   return dataArray;
 };
 
-export const getPricingInfo = async () => {
+export const getProductInfo = async () => {
   const response = await fetch(`${FIREBASE_DOMAIN}pricing.json`);
   const responseData = await response.json();
 
