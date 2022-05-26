@@ -46,7 +46,7 @@ code {
   width: 100%;
 }
 .image-description {
-  flex-grow: 1;
+  /* flex-grow: 1; */
   align-self: center;
   margin: 1rem;
   color: rgb(0, 0, 0);

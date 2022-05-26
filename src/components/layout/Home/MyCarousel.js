@@ -37,7 +37,7 @@ const MyCarousel = () => {
   const carouselContent = landingData.map((img) => {
     return (
       <Carousel.Item interval={9999999999} key={img.id}>
-        <div className="fullscreen-container d-flex">
+        <div className="fullscreen-container d-flex justify-content-center">
           <div className="image-container-flex">
             <img className="d-block" src={img.src} alt={`${img.id}`} />
           </div>

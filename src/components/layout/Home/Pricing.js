@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { getPricingInfo, getProductImages, isObject } from "../../../lib/api";
 import useHttp from "../../../hooks/use-http";
 import Spinner from "react-bootstrap/Spinner";
@@ -19,7 +19,8 @@ const createOptions = (id) => {
 };
 
 const Pricing = () => {
-  const [formList, setFormList] = useState([]);
+  const [productSelectList, setProductSelectList] = useState([]);
+  const [selectedValuesList, setSelectedValuesList] = useState([]);
   const [product, setProduct] = useState("");
   const [productImage, setProductImage] = useState("");
 
@@ -32,15 +33,18 @@ const Pricing = () => {
 
   const {
     sendRequest: getProductData,
-    status: landingStatus,
     data: productData,
   } = useHttp(getProductImages, true);
 
   useEffect(() => {
     getPricingData();
     getProductData();
-  }, []);
+  }, [getPricingData, getProductData]);
 
+  /**
+   * Sets the snapshot image to the current product that is selected
+   * @param {current product} value of the product form select
+   */
   const productChangeHandler = (value) => {
     setProduct(value);
     for (let i = 0; i < productData.length; i++) {
@@ -51,14 +55,6 @@ const Pricing = () => {
         setProductImage(source);
       }
     }
-    // const image = productData.filter(obj =>{
-    //   if(obj.hasOwnProperty(value)){
-    //     const source = obj[value]
-    //     console.log(source);
-    //     return source
-    //   }
-    // })
-    // console.log(image)
   };
 
   /**
@@ -102,7 +98,7 @@ const Pricing = () => {
           />
         );
       });
-      setFormList(form);
+      setProductSelectList(form);
     } else if (Array.isArray(data)) {
       //this is the final nest of the function. meaning there is no more data inside the passed on variable
       const form = (
@@ -115,7 +111,7 @@ const Pricing = () => {
         />
       );
 
-      setFormList((prev) => {
+      setProductSelectList((prev) => {
         if (prev.length <= 2) {
           return [...prev, form];
         } else {
@@ -151,7 +147,7 @@ const Pricing = () => {
 
   return (
     <section id="pricing" className="fullscreen-container pricing-color">
-      <h1>Pricing</h1>
+      <h2>Check out our product pricing!</h2>
       <div className="row justify-content-center">
         <div className="col-md-3">
           <ProductForm
@@ -164,7 +160,7 @@ const Pricing = () => {
             {productOptions}
           </ProductForm>
           <div className="container pricing-image">
-            <img src={productImage} />
+            <img src={productImage} alt={product}/>
           </div>
         </div>
         <div className="col-md-3">
@@ -176,7 +172,7 @@ const Pricing = () => {
           >
             {woodOptions}
           </ProductForm>
-          {formList}
+          {productSelectList}
         </div>
         <div className="col-md-3">
           <p>This will be the product detailed description</p>
