@@ -52,7 +52,7 @@ const MyCarousel = () => {
   });
   
 
-  return <Carousel>{carouselContent}</Carousel>;
+  return <Carousel id="home">{carouselContent}</Carousel>;
 };
 
 export default MyCarousel;

@@ -4,6 +4,9 @@ import useHttp from "../../hooks/use-http";
 import Spinner from "react-bootstrap/Spinner";
 import "./Products.css";
 import ProductForm from "./ProductForm";
+import Pergola from "./Pergola";
+import KidsSwing from "./KidsSwing";
+import DoubleSwing from "./DoubleSwing";
 
 const Products = () => {
   const [product, setProduct] = useState("");
@@ -40,7 +43,21 @@ const Products = () => {
     console.log(value);
   };
 
-  let productDescription = <p>Choose one of our products</p>
+  let productDescription = (
+    <div className="product-description">
+      <h1>Interested in one of our products?</h1>
+      <h3>Choose one from the drop down menu</h3>
+    </div>
+  );
+  if(product === 'pergola'){
+    productDescription = <Pergola />
+  }
+  if(product === 'kids swing'){
+    productDescription = <KidsSwing />
+  }
+  if (product === 'double swing'){
+    productDescription = <DoubleSwing />
+  }
 
   let productSelect;
   if (productStatus === "pending") {
@@ -56,7 +73,7 @@ const Products = () => {
   } else {
     productSelect = (
       <div className="row justify-content-center">
-        <div className="col-md-6">
+        <div className="col-md-8">
           <ProductForm
             onSelect={productSelectHandler}
             data={productData["products"]}
@@ -70,11 +87,10 @@ const Products = () => {
     );
   }
   return (
-    <section id="products" className="fullscreen-container products-color">
-      <h2>Choose a product</h2>
+    <section id="products" className="fullscreen-container d-flex products-color">
       <div className="row container-fluid">
-        <div className="col-md-5">{productSelect}</div>
-        <div className="col">{}</div>
+        <div className="col-md-4">{productSelect}</div>
+        <div className="col">{productDescription}</div>
       </div>
     </section>
   );
