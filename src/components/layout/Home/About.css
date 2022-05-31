@@ -1,15 +1,22 @@
 .about-color {
   background-image: linear-gradient(
     to bottom left,
-    rgb(185, 142, 142),
-    rgb(220, 233, 106)
+    rgb(99 217 97),
+    rgb(75 255 180)
   );
 }
-#about{
+#about {
   padding-top: 3rem;
 }
-#about .image-container-flex{
+#about .image-container-flex {
   margin: auto;
+}
+#about h1 {
+  text-align: center;
+  padding: 2rem;
+}
+#about h2 {
+  text-align: center;
 }
 .about-description {
   color: white;
@@ -18,16 +25,16 @@
 
 @media all and (orientation: landscape) {
   /* <---- About ---->*/
-  
+
   /* <---- About ---->*/
 }
 
 @media all and (orientation: portrait) {
   /* <---- About ---->*/
-  #about{
+  #about {
     flex-direction: column-reverse;
   }
-  #about img{
+  #about img {
     width: 80%;
     margin: auto;
   }

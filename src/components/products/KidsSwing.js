@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { getProductDescription } from "../../lib/api";
+import { getProductDescription, isObject } from "../../lib/api";
 import useHttp from "../../hooks/use-http";
 import Spinner from "react-bootstrap/Spinner";
 import "./KidsSwing.css";
@@ -13,26 +13,33 @@ const KidsSwing = () => {
   } = useHttp(getProductDescription, true);
 
   const createDisplayData = (data) => {
-    const info = data.map((offer) => {
-      console.log(offer);
-      const h2 = Object.keys(offer);
-      let p = Object.values(offer);
-      if (Array.isArray(p)) {
-        p = p.map((item) => {
-          const h3 = Object.keys(item);
-          const paragrap = Object.values(item);
+    console.log(data);
+    const info = data.map((item) => {
+      const h2 = Object.keys(item);
+      let p = Object.values(item);
+      if (isObject(p[0])) {
+        const object = p[0];
+        console.log("isobject");
+        console.log(object);
+        const h3 = Object.keys(object);
+        console.log(h3);
+        p = h3.map((title) => {
           return (
-            <div>
-              <h3>{h3}</h3>
-              <p>{paragrap}</p>
+            <div className="sub-info">
+              <h5>{title}</h5>
+              <p>{object[title]}</p>
             </div>
           );
         });
+      } else {
+        p = <p>{p}</p>;
       }
-      return <div>
+      return (
+        <div>
           <h2>{h2}</h2>
-          <p>{p}</p>
-      </div>
+          {p}
+        </div>
+      );
     });
     return info;
   };

@@ -1,0 +1,7 @@
+.contact-color{
+    background-image: linear-gradient(
+        to bottom left,
+        rgb(99 217 97),
+        rgb(75 255 180)
+      );
+}

@@ -38,7 +38,10 @@ const Products = () => {
         const source = element[value];
         console.log(source);
         setProductImage(source);
+      }else if(value === 'Choose product'){
+        setProductImage(null)
       }
+
     }
     console.log(value);
   };
@@ -81,7 +84,7 @@ const Products = () => {
           />
         </div>
         <div className="container products-image">
-          <img src={productImage} alt={product} />
+          {productImage && <img src={productImage} alt={product} />}
         </div>
       </div>
     );
