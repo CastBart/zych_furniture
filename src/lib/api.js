@@ -78,7 +78,7 @@ export const getProductImages = async () => {
   return dataArray;
 };
 
-export const getPricingInfo = async () => {
+export const getProductInfo = async () => {
   const response = await fetch(`${FIREBASE_DOMAIN}pricing.json`);
   const responseData = await response.json();
 
@@ -88,6 +88,15 @@ export const getPricingInfo = async () => {
 
   return responseData;
 };
+
+export const getProductDescription = async (product) =>{
+  const response = await fetch(`${FIREBASE_DOMAIN}pricing/descriptions/${product}.json`);
+  const responseData = await response.json();
+  if (!response.ok) {
+    throw new Error(responseData.message || "Could not fetch pricing info");
+  }
+  return responseData;
+}
 
 /**
  *

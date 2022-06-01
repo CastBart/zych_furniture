@@ -36,7 +36,7 @@ const MyCarousel = () => {
 
   const carouselContent = landingData.map((img) => {
     return (
-      <Carousel.Item interval={9999999999} key={img.id}>
+      <Carousel.Item interval={1800} key={img.id}>
         <div className="fullscreen-container d-flex justify-content-center">
           <div className="image-container-flex">
             <img className="d-block" src={img.src} alt={`${img.id}`} />
@@ -44,7 +44,7 @@ const MyCarousel = () => {
           <div className="image-description">
             <h1>{img.id}</h1>
             <p>{img.description}</p>
-            <HashLink className="btn btn-dark btn-lg" smooth to='#price' >Check it out!</HashLink>
+            <HashLink className="btn btn-dark btn-lg" smooth to='#products' >Check it out!</HashLink>
           </div>
         </div>
       </Carousel.Item>
@@ -52,7 +52,7 @@ const MyCarousel = () => {
   });
   
 
-  return <Carousel>{carouselContent}</Carousel>;
+  return <Carousel id="home">{carouselContent}</Carousel>;
 };
 
 export default MyCarousel;

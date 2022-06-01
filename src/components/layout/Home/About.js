@@ -26,7 +26,7 @@ const About = () => {
   //start of idea content
   let ideaContent = (
     <div>
-      <h1>How we do it</h1>
+      <h2>How we do it</h2>
       <p>
         The process is quite simple on your side. What we need you to do is most
         like already done. It's the <strong>idea</strong> we need from you. Just
@@ -59,7 +59,7 @@ const About = () => {
   //start of measuring content
   let measuringContent = (
     <div>
-      <h1>What we do</h1>
+      <h2>What we do</h2>
       <p>
         We are <strong>ZychFurniture</strong> and we are here to make your dream
         garden funrniture. All the furniture we make is hand crafted made from
@@ -89,8 +89,9 @@ const About = () => {
   //end of measuring content
 
   return (
-    <section id="about" className="fullscreen-container d-flex about-color">
-      <div className="row">
+    <section id="about" className="fullscreen-container d-flex about-color justify-content-center">
+      <div className="row container-md">
+        <h1>About us</h1>
         <div className="col-md">
           <div className="container-md">{measuringContent}</div>
         </div>
