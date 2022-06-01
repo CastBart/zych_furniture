@@ -5,3 +5,10 @@
         rgb(75 255 180)
       );
 }
+#contact{
+  padding-top: 3rem;
+}
+#contact h1{
+  text-align: center;
+  padding: 2rem;
+}
